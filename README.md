@@ -1,11 +1,10 @@
 # NS3TCPAlgo
 
-NS3 Version 3 Git Link, https://github.com/nsnam/ns-3-dev-git
+To Install NS3
+brew install ns-3
 
-To Build and Install NS3,
-
-  ./ns3 build
-  ./ns3 install
+To Install MLPACK
+brew install mlpack
 
 3rd Party Tools for Visual Code
 
@@ -15,3 +14,4 @@ Description: Extended CMake support in Visual Studio Code
 Version: 1.16.31
 Publisher: Microsoft
 VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools
+

@@ -1,24 +1,28 @@
-# ##############################################################################
-# Required CMake version            #
-# ##############################################################################
-cmake_minimum_required(VERSION 3.13..3.13)
+# CMakeLists.txt
+cmake_minimum_required(VERSION 3.5)
 
-# ##############################################################################
-# Project name                        #
-# ##############################################################################
-project(NS3 Example)
+project(TcpMlpackExample)
 
-# minimum compiler versions
-set(AppleClang_MinVersion 11.0.0)
-set(Clang_MinVersion 10.0.0)
-set(GNU_MinVersion 9.0.0)
+set(CMAKE_CXX_STANDARD 11)
 
-# common options
-option(NS3_EXAMPLES "Enable examples to be built" ON)
+# Set NS-3 directory (replace this with your actual NS-3 directory)
+set(NS3_DIR "/usr/local/ns-3/3.40")
 
+# Set mlpack directory (replace this with your actual mlpack directory)
+set(MLPACK_DIR "/usr/local/mlpack/4.2.1")
 
-# Build NS library examples
-add_subdirectory(examples)
+# Include the NS-3 build system
+set(CMAKE_MODULE_PATH ${NS3_DIR}/build/cmake/Modules ${CMAKE_MODULE_PATH})
+find_package(NS3 REQUIRED)
 
-write_lock()
-write_configtable()
+# Add the NS-3 include directories
+include_directories(${NS3_INCLUDE_DIRS})
+
+# Add mlpack include directory
+include_directories(${MLPACK_DIR}/include)
+
+# Define the target executable
+add_executable(tcp_mlpack_example tcp_mlpack_example.cc)
+
+# Link the target executable with NS-3 libraries and mlpack
+target_link_libraries(tcp_mlpack_example ${NS3_LIBRARIES} ${MLPACK_DIR}/lib/libmlpack.so)
